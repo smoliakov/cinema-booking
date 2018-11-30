@@ -79,7 +79,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      favicon: './src/favicon.ico',
+      favicon: './src/favicon.png',
       template: './src/index.html',
       publicPath: PUBLIC_PATH,
     }),

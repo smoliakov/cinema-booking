@@ -13,6 +13,7 @@ class Main extends Component {
 
   state = {
     data: null,
+    schedule: [],
   };
 
   componentDidMount() {
@@ -22,29 +23,75 @@ class Main extends Component {
         data,
       });
     });
+
+    const config = {
+      apiKey: 'AIzaSyCdMMVIMRN5mMo6tbJXBitxG1uyh19eP1M',
+      authDomain: 'iq-cinema.firebaseapp.com',
+      databaseURL: 'https://iq-cinema.firebaseio.com',
+      projectId: 'iq-cinema',
+      storageBucket: 'iq-cinema.appspot.com',
+      messagingSenderId: '859871658006',
+    };
+
+    window.firebase.initializeApp(config);
+    const firestore = firebase.firestore();
+    firestore.settings = { timestampsInSnapshots: true };
+
+    this.readSchedule(firestore)
+    .then(schedule => {
+      console.warn(schedule);
+      this.setState({ schedule });
+    });
   }
 
+  readSchedule = (firestore) => {
+    const schedule = firestore.collection('schedule');
+    return schedule.get().then(querySnapshot => {
+      const arr = [];
+      querySnapshot.forEach(doc => {
+        const data = doc.data();
+        data.id = doc.id;
+        arr.push(data);
+      });
+      return arr;
+    });
+  };
+
   render() {
-    const { data } = this.state;
+    const { data, schedule } = this.state;
 
     const b = block('Main');
 
     if (!data) return null;
 
+    console.warn(schedule);
+
     return (
       <div className={b()}>
-        <div className={b('header')}>Сегодня в IQ Cinema</div>
-        <Film film={data.today} />
         {
-          data.schedule.map(i => {
+          schedule.map(i => {
+
             return (
               <React.Fragment key={i.date}>
                 <div className={b('header')}>{i.date}</div>
-                <Film film={i.film} />
+                <Film film={i} />
               </React.Fragment>
-            );
+            )
           })
         }
+
+        {/*<div className={b('header')}>Сегодня в IQ Cinema</div>*/}
+        {/*<Film film={data.today} />*/}
+        {/*{*/}
+          {/*data.schedule.map(i => {*/}
+            {/*return (*/}
+              {/*<React.Fragment key={i.date}>*/}
+                {/*<div className={b('header')}>{i.date}</div>*/}
+                {/*<Film film={i.film} />*/}
+              {/*</React.Fragment>*/}
+            {/*);*/}
+          {/*})*/}
+        {/*}*/}
       </div>
     );
   }
