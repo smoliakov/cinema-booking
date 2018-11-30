@@ -1,0 +1,49 @@
+{
+  "today": {
+    "title": "Red sparrow",
+    "genre": "Фантастика",
+    "description": "Начало нового тысячелетия; происходит прорыв в глобальных технологиях. Люди уже не заводят дома собак и кошек: они покупают себе роботов. Может ли робот стать реальным человеком? ",
+    "link": "https://www.kinopoisk.ru/film/dvukhsotletniy-chelovek-1999-7640",
+    "image": "https://m.media-amazon.com/images/M/MV5BMTA3MDkxOTc4NDdeQTJeQWpwZ15BbWU4MDAxNzgyNTQz._V1_.jpg",
+    "duration": "2:40",
+    "year": "2018"
+  },
+  "schedule": [
+    {
+      "date": "30.11.2018",
+      "film": {
+        "title": "Стражи Галактики",
+        "genre": "Фантастика",
+        "description": "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной.",
+        "link": "https://www.kinopoisk.ru/film/dvukhsotletniy-chelovek-1999-7640",
+        "image": "https://cdn.igromania.ru/mnt/articles/5/f/f/4/f/b/29015/preview/0cfd1fb55b20de5a_848xH.jpg",
+        "duration": "2:10",
+        "year": "2017"
+      }
+    },
+    {
+      "date": "1.12.2018",
+      "film": {
+        "title": "Богемская рапсодия",
+        "genre": "Драма/Биография",
+        "description": "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной.",
+        "link": "https://www.kinopoisk.ru/film/dvukhsotletniy-chelovek-1999-7640",
+        "image": "http://kinohod.ru/o/e2/3d/e23d24bd-7838-456a-879a-06ed6d54fb66.jpg",
+        "duration": "2:10",
+        "year": "2018"
+      }
+    },
+    {
+      "date": "2.12.2018",
+      "film": {
+        "title": "Три билборда на границе Эббинга, Миссури",
+        "genre": "Драма/Криминал",
+        "description": "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной.",
+        "link": "https://www.kinopoisk.ru/film/dvukhsotletniy-chelovek-1999-7640",
+        "image": "https://www.kinopoisk.ru/images/film_big/944098.jpg",
+        "duration": "2:10",
+        "year": "2017"
+      }
+    }
+  ]
+}
