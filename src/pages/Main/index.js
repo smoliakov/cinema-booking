@@ -35,12 +35,11 @@ class Main extends Component {
       <div className={b()}>
         {
           schedule.map(i => {
-            const date = moment(i.date);
-            console.warn(i.date, date.format());
+            const date = moment(i.date).format('DD MMM YYYY');
 
             return (
               <React.Fragment key={i.date}>
-                <div className={b('header')}>{i.date}</div>
+                <div className={b('header')}>{date}</div>
                 <Film film={i} />
               </React.Fragment>
             );
