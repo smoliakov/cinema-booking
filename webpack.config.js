@@ -82,7 +82,7 @@ module.exports = {
       BASENAME: JSON.stringify('/'),
     }),
     new HtmlWebpackPlugin({
-      favicon: './src/favicon.png',
+      favicon: './src/assets/favicon.png',
       template: './src/index.html',
       publicPath: PUBLIC_PATH,
     }),
