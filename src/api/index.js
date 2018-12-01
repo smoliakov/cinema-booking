@@ -1,7 +1,38 @@
-import fixtures from '../fixtures';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
-export const fetchFilms = () => {
-  return new Promise(resolve => {
-    resolve(fixtures);
+const config = {
+  apiKey: 'AIzaSyCdMMVIMRN5mMo6tbJXBitxG1uyh19eP1M',
+  authDomain: 'iq-cinema.firebaseapp.com',
+  databaseURL: 'https://iq-cinema.firebaseio.com',
+  projectId: 'iq-cinema',
+  storageBucket: 'iq-cinema.appspot.com',
+  messagingSenderId: '859871658006',
+};
+
+const config2 = {
+  apiKey: 'AIzaSyCI8L_4J_jYfqdvNPZuJLQEtfjfjsob9BE',
+  authDomain: 'cinema-booking-50cb7.firebaseapp.com',
+  databaseURL: 'https://cinema-booking-50cb7.firebaseio.com',
+  projectId: 'cinema-booking-50cb7',
+  storageBucket: 'cinema-booking-50cb7.appspot.com',
+  messagingSenderId: '837992740170',
+};
+
+firebase.initializeApp(config2);
+export const firestore = firebase.firestore();
+firestore.settings({ timestampsInSnapshots: true });
+
+export const fetchSchedule = () => {
+  const schedule = firestore.collection('schedule');
+
+  return schedule.get().then(querySnapshot => {
+    const arr = [];
+    querySnapshot.forEach(doc => {
+      const data = doc.data();
+      data.id = doc.id;
+      arr.push(data);
+    });
+    return arr;
   });
 };

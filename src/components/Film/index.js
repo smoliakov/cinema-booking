@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import block from 'bem-cn-lite';
+import moment from 'moment';
 
 import './styles.less';
 
