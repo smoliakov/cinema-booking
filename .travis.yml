@@ -14,7 +14,7 @@ cache:
 
 script:
   - npm i
-  - npm start build
+  - npm run build
 deploy:
   provider: pages
   skip_cleanup: true
