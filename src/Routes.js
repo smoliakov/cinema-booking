@@ -13,7 +13,7 @@ class Routes extends Component {
   render() {
     return (
       <div className={'AppContainer'}>
-        <BrowserRouter basename={'/cinema-booking/'}>
+        <BrowserRouter basename={BASENAME}>
           <Switch>
             <Route path={'/'} exact component={Main} />
           </Switch>

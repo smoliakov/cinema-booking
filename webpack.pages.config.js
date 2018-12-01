@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const PUBLIC_PATH = '/cinema-booking/';
+
 module.exports = {
   mode: 'production',
   devtool: 'source-map',
@@ -15,7 +17,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].[hash:5].js',
-    publicPath: '/cinema-booking/',
+    publicPath: PUBLIC_PATH,
   },
 
   optimization: {
@@ -57,11 +59,16 @@ module.exports = {
   },
 
   plugins: [
-    new CopyWebpackPlugin(['manifest.json']),
+    new webpack.DefinePlugin({
+      BASENAME: JSON.stringify(PUBLIC_PATH),
+    }),
+    new CopyWebpackPlugin([
+      'manifest.json',
+    ]),
     new HtmlWebpackPlugin({
       favicon: './src/favicon.png',
       template: './src/index.html',
-      publicPath: '/cinema-booking/',
+      publicPath: PUBLIC_PATH,
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash:5].css',

@@ -1,8 +1,9 @@
+const path = require('path');
+const webpack = require('webpack');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const path = require('path');
 
 const PUBLIC_PATH = '/';
 
@@ -16,7 +17,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].[hash:5].js',
-    publicPath: '/',
+    publicPath: PUBLIC_PATH,
   },
 
   optimization: {
@@ -58,6 +59,9 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      BASENAME: JSON.stringify(PUBLIC_PATH),
+    }),
     new HtmlWebpackPlugin({
       favicon: './src/favicon.png',
       template: './src/index.html',

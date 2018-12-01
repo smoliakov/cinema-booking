@@ -78,6 +78,9 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      BASENAME: JSON.stringify('/'),
+    }),
     new HtmlWebpackPlugin({
       favicon: './src/favicon.png',
       template: './src/index.html',
