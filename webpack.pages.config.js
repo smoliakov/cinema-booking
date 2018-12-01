@@ -3,6 +3,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -56,6 +57,7 @@ module.exports = {
   },
 
   plugins: [
+    new CopyWebpackPlugin(['manifest.json']),
     new HtmlWebpackPlugin({
       favicon: './src/favicon.png',
       template: './src/index.html',
