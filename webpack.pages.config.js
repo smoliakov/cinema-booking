@@ -35,6 +35,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[name].[ext]',
+        },
+      },
+      {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         options: { cacheDirectory: true },
@@ -64,7 +72,7 @@ module.exports = {
       BASENAME: JSON.stringify(PUBLIC_PATH),
     }),
     new CopyWebpackPlugin([
-      'manifest.json',
+      './src/manifest.json',
     ]),
     new HtmlWebpackPlugin({
       favicon: './src/assets/favicon.png',

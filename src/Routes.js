@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Main from './pages/Main';
 import Schedule from './admin/Schedule';
+import AppHeader from './components/Header';
 
 class Routes extends Component {
   static defaultProps = {};
@@ -13,15 +14,15 @@ class Routes extends Component {
 
   render() {
     return (
-      <div className={'AppContainer'}>
-        <BrowserRouter basename={BASENAME}>
+      <BrowserRouter basename={BASENAME}>
+        <div className={'AppContainer'}>
+          <AppHeader />
           <Switch>
             <Route path={'/'} exact component={Main} />
-
             <Route path={'/admin'} exact component={Schedule} />
           </Switch>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

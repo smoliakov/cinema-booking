@@ -37,3 +37,62 @@
     }
   }
 }
+
+.Film2 {
+  height: 160px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  display: flex;
+  margin-left: 10px;
+
+  &__poster {
+    width: 100px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-position: center center;
+    background-size: cover;
+    flex-shrink: 0;
+    margin: 15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    left: -30px;
+    position: relative;
+  }
+
+  &__info {
+    padding: 15px 15px 15px 0;
+    margin-left: -30px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: normal;
+  }
+
+  &__additional {
+    font-size: 12px;
+    font-weight: 400;
+    color: #666666;
+    margin-top: 6px;
+  }
+
+  &__bookButton {
+    margin-top: auto;
+    align-self: flex-end;
+
+    button {
+      font-size: 14px;
+      font-weight: 400;
+      color: white;
+      background-color: #ff6600;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 2px;
+      min-width: 80px;
+      outline: none;
+    }
+  }
+}
