@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --config webpack.config.js",
+    "multi": "node server.js",
     "build": "webpack --config webpack.prod.config.js",
     "build:pages": "webpack --config webpack.pages.config.js"
   },
