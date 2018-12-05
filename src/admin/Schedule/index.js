@@ -25,7 +25,7 @@ class Schedule extends Component {
   };
 
   onSubmit = (values) => {
-    console.warn('submit', values);
+    console.warn(values);
 
     API.addFilm(values)
     .then(() => {
@@ -47,10 +47,8 @@ class Schedule extends Component {
       <div>
         <h2>Schedule</h2>
 
-        <h4>Add new film to schedule</h4>
         <AddFilmForm onSubmit={this.onSubmit} />
 
-        <h4>Films</h4>
         {schedule.map(i => <Film onDelete={this.onDelete} film={i} key={i.id} />)}
       </div>
     );

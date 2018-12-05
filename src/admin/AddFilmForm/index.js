@@ -1,109 +1,116 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Field, Form } from 'react-final-form';
+import block from 'bem-cn-lite';
+import {
+  Form, Input, DatePicker, TimePicker, Tooltip, Icon, Cascader, Select,
+  Checkbox, Button, AutoComplete,
+} from 'antd';
+
+import './styles.less';
 
 class AddFilmForm extends Component {
+  onSubmit = e => {
+    const { form, onSubmit } = this.props;
+    e.preventDefault();
+
+    form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+        const vals = {
+          ...values,
+          date: values.date.format('YYYY-MM-DD'),
+          time: values.time.format('HH:mm'),
+        };
+        onSubmit(vals);
+        form.resetFields();
+      }
+    });
+  };
+
   render() {
-    const { onSubmit } = this.props;
+    const { getFieldDecorator } = this.props.form;
+
+    const b = block('AddFilmForm');
+
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 4 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 },
+      },
+    };
+
+    const buttonItemLayout = {
+      wrapperCol: { span: 24, offset: 4 },
+    };
 
     return (
-      <div>
-        <Form
-          onSubmit={onSubmit}
-          render={({ handleSubmit, form, submitting, pristine, values }) => (
-            <form onSubmit={handleSubmit}>
-              <div>
-                <div>
-                  <label>Date</label>
-                </div>
-                <Field
-                  name="date"
-                  component="input"
-                  type="date"
-                />
-              </div>
-              <div>
-                <div>
-                  <label>Title</label>
-                </div>
-                <Field
-                  name="title"
-                  component="input"
-                  type="text"
-                />
-              </div>
+      <div className={b()}>
+        <h4>Add new film to schedule</h4>
 
-              <div>
-                <div>
-                  <label>description</label>
-                </div>
-                <Field
-                  name="description"
-                  component="input"
-                  type="text"
-                />
-              </div>
-
-              <div>
-                <div>
-                  <label>duration</label>
-                </div>
-                <Field
-                  name="duration"
-                  component="input"
-                  type="text"
-                />
-              </div>
-
-              <div>
-                <div>
-                  <label>genre</label>
-                </div>
-                <Field
-                  name="genre"
-                  component="input"
-                  type="text"
-                />
-              </div>
-
-              <div>
-                <div>
-                  <label>image</label>
-                </div>
-                <Field
-                  name="image"
-                  component="input"
-                  type="text"
-                />
-              </div>
-              <div>
-                <div>
-                  <label>link</label>
-                </div>
-                <Field
-                  name="link"
-                  component="input"
-                  type="text"
-                />
-              </div>
-
-              <div>
-                <div>
-                  <label>year</label>
-                </div>
-                <Field
-                  name="year"
-                  component="input"
-                  type="text"
-                />
-              </div>
-
-              <button type="submit" disabled={submitting || pristine}>
-                Save
-              </button>
-            </form>
-          )}
-        />
+        <Form onSubmit={this.onSubmit}>
+          <Form.Item label="Date" {...formItemLayout}>
+            {getFieldDecorator('date', {
+              rules: [{
+                required: true, message: 'Please input date!',
+              }],
+            })(
+              <DatePicker />,
+            )}
+          </Form.Item>
+          <Form.Item label="Time" {...formItemLayout}>
+            {getFieldDecorator('time', {
+              rules: [{
+                required: true, message: 'Please input time!',
+              }],
+            })(
+              <TimePicker format={'HH:mm'} />,
+            )}
+          </Form.Item>
+          <Form.Item label="Title" {...formItemLayout}>
+            {getFieldDecorator('title')(
+              <Input />,
+            )}
+          </Form.Item>
+          <Form.Item label="Description" {...formItemLayout}>
+            {getFieldDecorator('description')(
+              <Input />,
+            )}
+          </Form.Item>
+          <Form.Item label="Duration" {...formItemLayout}>
+            {getFieldDecorator('duration')(
+              <Input />,
+            )}
+          </Form.Item>
+          <Form.Item label="Genre" {...formItemLayout}>
+            {getFieldDecorator('genre')(
+              <Input />,
+            )}
+          </Form.Item>
+          <Form.Item label="Image url" {...formItemLayout}>
+            {getFieldDecorator('image')(
+              <Input />,
+            )}
+          </Form.Item>
+          <Form.Item label="Link" {...formItemLayout}>
+            {getFieldDecorator('link')(
+              <Input />,
+            )}
+          </Form.Item>
+          <Form.Item label="Year" {...formItemLayout}>
+            {getFieldDecorator('year')(
+              <Input />,
+            )}
+          </Form.Item>
+          <Form.Item {...buttonItemLayout}>
+            <Button type={'primary'} htmlType="submit">
+              Save
+            </Button>
+          </Form.Item>
+        </Form>
       </div>
     );
   }
@@ -112,16 +119,6 @@ class AddFilmForm extends Component {
 AddFilmForm.propTypes = {};
 AddFilmForm.defaultProps = {};
 
-export default AddFilmForm;
 
-/*
-date: "30.11.2018"
-: "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной."
-: "2:10"
-: "Фантастика"
-id: "Bif6hZwtoggzn3xH0e9t"
-: "https://cdn.igromania.ru/mnt/articles/5/f/f/4/f/b/29015/preview/0cfd1fb55b20de5a_848xH.jpg"
-: "https://www.kinopoisk.ru/film/dvukhsotletniy-chelovek-1999-7640"
-title: "Стражи Галактики"
-: "2017"
- */
+const WrappedAddFilmForm = Form.create()(AddFilmForm);
+export default WrappedAddFilmForm;

@@ -10,11 +10,11 @@ module.exports = [{
   devtool: 'eval-cheap-module-source-map',
 
   entry: [
-    './src/index.js',
+    './src/admin/index.js',
   ],
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: '[name].js',
+    path: path.resolve(__dirname, 'admin'),
+    filename: 'admin.[name].js',
     publicPath: PUBLIC_PATH,
   },
 
@@ -93,7 +93,7 @@ module.exports = [{
   ],
 
   devServer: {
-    port: 4500,
+    port: 4600,
     host: '0.0.0.0',
     historyApiFallback: true,
   },
